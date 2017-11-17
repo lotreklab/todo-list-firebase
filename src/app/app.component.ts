@@ -4,8 +4,6 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-// qui sopra ci sono gli import
-
 interface Todos {
   description: string;
   done: boolean;
@@ -17,13 +15,22 @@ interface Todos {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  description: string;
   todosCollection: AngularFirestoreCollection<Todos>;
   todos: Observable<Todos[]>;
-
+  // costruttore
   constructor(private afs: AngularFirestore) { }
   ngOnInit() {
     this.todosCollection = this.afs.collection('todos');
-    this.todos = this.todosCollection.valueChanges()
+    this.todos = this.todosCollection.valueChanges();
   }
+
+  addTodo() {
+    this.afs.collection('todos').add({
+      'description': this.description,
+      'done': false
+    });
+  }
+
+
 }
