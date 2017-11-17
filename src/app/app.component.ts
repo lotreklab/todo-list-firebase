@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   description: string;
   todosCollection: AngularFirestoreCollection<Todos>;
   todos: Observable<Todos[]>;
-  // costruttore
   constructor(private afs: AngularFirestore) { }
   ngOnInit() {
     this.todosCollection = this.afs.collection('todos');
