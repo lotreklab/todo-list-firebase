@@ -9,6 +9,10 @@ interface Todos {
   done: boolean;
 }
 
+interface Todo extends Todos {
+  id: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,11 +21,18 @@ interface Todos {
 export class AppComponent implements OnInit {
   description: string;
   todosCollection: AngularFirestoreCollection<Todos>;
-  todos: Observable<Todos[]>;
+  todos: any;
   constructor(private afs: AngularFirestore) { }
   ngOnInit() {
     this.todosCollection = this.afs.collection('todos');
-    this.todos = this.todosCollection.valueChanges();
+    this.todos = this.todosCollection.snapshotChanges()
+      .map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as Todo;
+          const id = a.payload.doc.id;
+          return { id, data };
+        });
+      });
   }
 
   addTodo() {
@@ -31,5 +42,15 @@ export class AppComponent implements OnInit {
     });
   }
 
+  updateTodo(id, event) {
+    const checkedVal = event.target.checked;
+    this.afs.doc('todos/' + id).update({
+      'done': checkedVal
+    });
+  }
+
+  removeTodo(id){
+    this.afs.doc('todos/' + id).delete();
+  }
 
 }
