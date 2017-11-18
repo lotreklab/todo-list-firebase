@@ -4,10 +4,12 @@
   <button type="submit" (click)="addTodo()"> Aggiungi Todo </button>
 </form>
 
-<ul>
-  <li *ngFor="let todo of todos | async">
-    <input [checked]="todo.data.done" type="checkbox" (change)="updateTodo(todo.id, $event)" />
-    <b [class.done]="todo.data.done" >{{todo.data.description}}</b>
-    <button *ngIf="todo.data.done" (click)="removeTodo(todo.id)">Cancella</button>
-  </li>
-</ul>
+<main>
+  <ul>
+    <li *ngFor="let todo of todos | async">
+      <input [checked]="todo.data.done" type="checkbox" (change)="updateTodo(todo.id, $event)" />
+      <b [class.done]="todo.data.done" >{{todo.data.description}}</b>
+      <button *ngIf="todo.data.done" (click)="removeTodo(todo.id)">&times;</button>
+    </li>
+  </ul>
+</main>

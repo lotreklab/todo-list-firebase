@@ -23,6 +23,15 @@ form input{
   flex:1;
 }
 
+form button{
+  background:#1c1c1c;
+}
+
+form button:hover{
+  background:#ff6666;
+  color:white;
+}
+
 ul {
     list-style: none;
     padding: 0;
