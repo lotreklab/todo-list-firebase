@@ -1,5 +1,8 @@
-<input type="text" [(ngModel)]="description" name="description" placeholder="Cosa devo fare ...">
-<input type="submit" value="aggiungi" (click)="addTodo()">
+<h1>To do list</h1>
+<form>
+  <input type="text" [(ngModel)]="description" name="description" placeholder="Cosa devo fare ...">
+  <button type="submit" (click)="addTodo()"> Aggiungi Todo </button>
+</form>
 
 <ul>
   <li *ngFor="let todo of todos | async">
