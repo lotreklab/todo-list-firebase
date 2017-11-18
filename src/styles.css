@@ -50,6 +50,7 @@ form button{
 
 form button:hover{
   background:#ff6666;
+  color:white;
 }
 
 ul {
