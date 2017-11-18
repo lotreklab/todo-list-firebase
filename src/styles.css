@@ -3,12 +3,32 @@
 body{
   font-family: 'Helvetica Neue', sans-serif;
   background: #ededed;
+  margin: 0;
 }
 
-app-root {
+header{
+  background: #ff6666;
+  padding:.5em;
+  display: flex;
+  align-items: center;
+
+}
+
+header img{
+  max-height: 2em;
+}
+
+h1{
+  font-weight: 100;
+  color: white;
+  margin: 0 .5em 0 0;
+}
+
+main {
     max-width: 800px;
     margin: 0 auto;
     display: block;
+    padding: 2em 1em;
 }
 
 textarea, input, button { outline: none; }
@@ -17,6 +37,7 @@ form{
   display:flex;
   width: 100%;
   align-items: center;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
 form input{
@@ -51,33 +72,30 @@ li b{
   font-size: 1.5em;
   margin: 0 .5em;
   flex:1;
+  transition: all .3s;
 }
 
 button {
     font-weight: 300;
-    color: white;
+    color: #ff6666;
     border: none;
     border-radius: 0;
-    background: #ff9300;
+    background: white;
     padding: 1em;
     font-size: .8em;
     cursor: pointer;
     transition: all .3s;
-}
-
-h1{
-  font-weight: 500;
-  color: #ff9300;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
 button:hover{
-     background: #ff560e;
+     background: #ededed;
 }
 
 input[type="text"] {
     background: none;
     border: none;
-    border-bottom: 1px solid #ff9300;
+    background:white;
     font-size: 1.5em;
     padding: .25em;
     font-weight: 100;
@@ -85,7 +103,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus{
-  color: #ff9300;
+  color: #ff6666;
 }
 
 .done{
