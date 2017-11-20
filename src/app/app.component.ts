@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, sequence, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, trigger, sequence, transition, animate, style, state, keyframes } from '@angular/core';
 
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -21,22 +21,18 @@ interface Todo extends Todos {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
-    trigger('anim', [
-      transition('* => void', [
-        style({ height: '*', opacity: '1', transform: 'translateX(0)', 'box-shadow': '0 1px 4px 0 rgba(0, 0, 0, 0.3)' }),
-        sequence([
-          animate(".25s ease", style({ height: '*', opacity: '.2', transform: 'translateX(20px)', 'box-shadow': 'none' })),
-          animate(".1s ease", style({ height: '0', opacity: 0, transform: 'translateX(20px)', 'box-shadow': 'none' }))
-        ])
+    trigger('hideShow', [
+      state('in', style({ transform: 'scaleY(1)' })),
+
+      transition('* => *', [
+        animate(1000, keyframes([
+          style({ opacity: 0, transform: 'scaleY(0)', offset: 0 }),
+          style({ opacity: 0, transform: 'scaleY(1)', offset: 0.5 }),
+          style({ opacity: 1, transform: 'scaleY(1)', offset: 1 })
+        ]))
       ]),
-      transition('void => active', [
-        style({ height: '0', opacity: '0', transform: 'translateX(20px)', 'box-shadow': 'none' }),
-        sequence([
-          animate(".1s ease", style({ height: '*', opacity: '.2', transform: 'translateX(20px)', 'box-shadow': 'none' })),
-          animate(".35s ease", style({ height: '*', opacity: 1, transform: 'translateX(0)', 'box-shadow': '0 1px 4px 0 rgba(0, 0, 0, 0.3)' }))
-        ])
-      ])
     ])
+
   ],
 })
 
